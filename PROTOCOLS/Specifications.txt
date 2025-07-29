@@ -1,0 +1,73 @@
+#Protocol Specifications
+This file contains detailed specifications for the three protocols, including the necessary labware 
+and step-by-step instructions for each one.
+Protocols uses specific coordinates for each labware. If you want to use the default coordinates, remove 
+the line "labware.set_offset()" for each item.
+It is also important to emphasize that the protocols are by default set to work with one plate per run. 
+However, it is possible to use them for multiple plates if the line(s) commented with the style "#Write 
+the amount of plates...." are modified in the .py file. In "Transfer_to_384_well_plate.py" protocol, you
+can also specify the 384 well plate column from where you want to start using it (useful if the 384 well 
+plate has already been used)
+
+
+Protocol 1: "Cell_lysis.py"
+- Summary
+This protocol involves transferring 100 µL of solution from the first column of the reservoir into well 
+A2 of the first 96-well plate, followed by transferring another 100 µL from the first column of the 
+reservoir into well A3, continuing this process until well A11 is reached. Afterward, each well from A2 
+to A11 is mixed twice, and the pipette tip is washed in well A12 of the reservoir between each transfer, 
+to be discarded. If the protocol is performed for multiple plates, the robot first follows the procedure 
+outlined above for the first plate, then applies the same steps to the second plate, using 100 µL from 
+column A2 of the reservoir.
+Therefore, a washing solution for the tips (e.g., bleach) should be manually prepared in column A12 of 
+the reservoir. Additionally, if more than one plate is being processed, 10 mL of lysis solution should 
+be placed in the respective column of the reservoir (one column per plate, starting from A1 for the 
+first plate).
+- Labware needed 
+Reservoir: nest_12_reservoir_15ml
+96-well plates: nest_96_wellplate_200ul_flat
+Tipracks: opentrons_96_tiprack_300ul (one tiprack per plate)
+Pipette: p300 single on left
+
+Protocol 2: "Drugs_combination_on_PCR_plate.py"
+- Summary
+This protocol requires manually placing the compounds into the first well of the first row (A2) and the 
+first column (B1) of the PCR plate (at least 80 µL). Additionally, requires preparing an Eppendorf with 
+DMSO in well A1 of the tuberack (1 mL). 
+The protocol starts by adding DMSO into the first row and column, except for the wells where compounds 
+were manually placed. The robot will transfer 50 µL from Eppendorf A1 in the tuberack to well A3 of the 
+PCR plate, then from Eppendorf A1 to A4 in PCR plate, and so on. Afterward, it will fill the first column 
+by aspirating again from Eppendorf A1 and transferring to C1, D1, and continuing until reaching G1. Then, 
+serial dilutions of the compounds will be made in the first row (from A2 to A9) and the first column (from 
+B1 to F1), transferring 50 µL each time. Finally, combinations will be made between the rows and columns; 
+for this the robot will first distribute the content of column 1 along the rows (i.e., from B1 to B10, 
+from B1 to B9, and so on), then it will distribute the content of the first row along each column (from 
+A2 to G2, A2 to F2, etc).
+- Labware needed
+PCR full skirt plate: nest_96_wellplate_100ul_pcr_full_skirt
+Reservoir: opentrons_24_tuberack_nest_1.5ml_snapcap
+Tipracks p300: opentrons_96_tiprack_300ul
+Tipracks p20: opentrons_96_tiprack_20ul
+P300 pipette: p300_single_gen2 on left
+P20 pipette: p20_single_gen2 on right
+
+Protocol 3: "Transferring_from_96_to_384-well_plate_and_substrate_addition.py"
+- Summary
+This protocol transfers solutions from a 96-well plate to a 384-well plate, mixing 5 times at each step. 
+The robot first transfers 90 µL from B2 of the 96-well plate to A1 of the 384-well plate, then 90 µL from 
+C2 to B1, and from D2 to C1, continuing this pattern until the entire 96-well plate is processed, 
+excluding rows A and H, and column 1 of the 96-well plate.
+The protocol also includes substrate distribution in the 384-well plate. It begins by adding 10 µL to the 
+control wells, then continues filling the remaining wells in sequence (A1, B1, C1, etc.). Substrate is 
+always drawn from an Eppendorf located in position A1 of the tuberack. At least 600 µL of substrate is 
+required (10 µL per 60 wells).
+- Labware needed
+- - For liquid transfer from 96-well plates to a 384-well plate:
+384-well plate: corning_384_wellplate_112ul_flat
+96-well plate: nest_96_wellplate_200ul_flat
+Tipracks: opentrons_96_tiprack_300ul (one per 96-well plate)
+Pipette: p300_single_gen2 on left
+- - For substrate transfer to the 384-well plate:
+Reservoir: opentrons_24_tuberack_eppendorf_1.5ml_safelock_snapcap
+Tipracks: opentrons_96_tiprack_20ul
+Pipette: p20_single_gen2 on right
