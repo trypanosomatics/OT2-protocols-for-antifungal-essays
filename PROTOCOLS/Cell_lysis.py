@@ -10,7 +10,6 @@ def run(ctx: protocol_api.ProtocolContext):
     # LABWARE INPUTS
     reservoir_position = 1
     reservoir = ctx.load_labware("nest_12_reservoir_15ml", reservoir_position)
-    reservoir.set_offset(x=0.00, y=0.00, z=0.00)
 
     # Plates and tipracks
     plates = 1                                           #Write de amount of plates you want to lysis
@@ -22,11 +21,9 @@ def run(ctx: protocol_api.ProtocolContext):
 
     for i in range(plates):
         plate_i = ctx.load_labware("nest_96_wellplate_200ul_flat", plate_slots[i])
-        plate_i.set_offset(x=1.00, y=2.00, z=0.00)
         plates_list.append(plate_i)
 
         tips_i = ctx.load_labware("opentrons_96_tiprack_300ul", tiprack_slots[i])
-        tips_i.set_offset(x=0.00, y=1.00, z=0.00)
         tips_list.append(tips_i)
     #Pipette
     left_pipette = ctx.load_instrument("p300_single_gen2", "left", tip_racks= tips_list)

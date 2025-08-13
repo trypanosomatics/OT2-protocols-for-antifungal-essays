@@ -10,16 +10,13 @@ def run(ctx: protocol_api.ProtocolContext):
     #LABWARE INPUTS
     ctx.home()
     plate_pcr = ctx.load_labware("nest_96_wellplate_100ul_pcr_full_skirt", 1)
-    plate_pcr.set_offset(x=0.00, y=2.00, z=0.00)
     reservoir = ctx.load_labware("opentrons_24_tuberack_nest_1.5ml_snapcap", 2)
-    reservoir.set_offset(x=0.00, y=2.00, z=2.00)
     #          (TIP RACKS) 
     p300_tips=1
     p300_tips_list=[]
     for i in range (1, p300_tips+1):
         position_tips_i=2+i
         tips_i = ctx.load_labware("opentrons_96_tiprack_300ul", position_tips_i)
-        tips_i.set_offset(x=0.00, y=1.50, z=0.00)
         p300_tips_list.append(tips_i)
         i+=1
     p20_tips=1
@@ -27,7 +24,6 @@ def run(ctx: protocol_api.ProtocolContext):
     for j in range (1, p20_tips+1):
         position_tips_j= position_tips_i +j
         tips_j = ctx.load_labware("opentrons_96_tiprack_20ul", position_tips_j)
-        tips_j.set_offset(x=0.00, y=1.50, z=0.00)
         p20_tips_list.append(tips_j)
         j+=1
     #Pipettes 

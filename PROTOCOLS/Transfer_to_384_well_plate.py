@@ -47,25 +47,20 @@ def run(ctx: protocol_api.ProtocolContext):
         tips_20 = [1]
    
     plate_384 = ctx.load_labware("corning_384_wellplate_112ul_flat", plate_384_lot[0])
-    plate_384.set_offset(x=0.50, y=1.50, z=3.00)
 
     for i in range(plates):
        
         plate_i = ctx.load_labware("nest_96_wellplate_200ul_flat", plates_96_lot[i])
-        plate_i.set_offset(x=1.00, y=2.00, z=0.00)
         plates_list.append(plate_i)
        
         tips_i = ctx.load_labware("opentrons_96_tiprack_300ul", tips_300_lot[i])
-        tips_i.set_offset(x=0.00, y=2.00, z=0.00)
         tips_list.append(tips_i)
        
         if i < len(reservoir_lot):
             reservoir = ctx.load_labware("opentrons_24_tuberack_eppendorf_1.5ml_safelock_snapcap", reservoir_lot[i])
-            reservoir.set_offset(x=0.00, y=1.00, z=0.00)
        
         if i < len(tips_20):
             tips_p20_i = ctx.load_labware("opentrons_96_tiprack_20ul", tips_20[i])
-            tips_p20_i.set_offset(x=0.00, y=1.50, z=0.00)
             tips_p20_list.append(tips_p20_i)
    
     p300_pipette = ctx.load_instrument("p300_single_gen2", "left", tip_racks= tips_list)
