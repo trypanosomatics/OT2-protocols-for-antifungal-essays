@@ -30,8 +30,14 @@ The standard protocol used for this phenotypic screening assay was performed ove
 
 ### III. Transference to solid-black 384-well plates for fluorescencemeasurement, and addition of MUG substrate
 1. Prepare and place manually an Eppendorf tube with (at least) 600 uL of substrate, in A1 of [opentrons_24_tuberack_eppendorf_1.5ml_safelock_snapcap](https://labware.opentrons.com/#/?loadName=opentrons_24_tuberack_eppendorf_1.5ml_safelock_snapcap).
-- Note: User must have a (corning_384_wellplate_112ul_flat)[https://labware.opentrons.com/#/?loadName=corning_384_wellplate_112ul_flat] and at least one [nest_96_wellplate_200ul_flat](https://labware.opentrons.com/#/?loadName=nest_96_wellplate_200ul_flat) or similar to run this protocol.
+- Note: User must have a [smc_384_read_plate](https://labware.opentrons.com/#/?loadName=smc_384_read_plate) and at least one [nest_96_wellplate_200ul_flat](https://labware.opentrons.com/#/?loadName=nest_96_wellplate_200ul_flat) or similar to run this protocol.
 2. Run Transfer_to_384_well_plate.py script on Opentrons OT-2. 
 3. Read plate.
 
+### NOTES ON THE SCRIPTS
+This README is not exhaustively detailed, for specifications see comments in scripts.
 
+## ALTERNATIVE USES OF THIS PROTOCOL
+These scripts were designed to be easily modified and adapted to user requirements. Specifically in Step II (cell lysis) and III (liquid transfer/substrate addition), the protocol allows users to define the number of plates to process. This enables:
+- Group processing of multiple plates in a single run
+- Capacity to transfer liquids from up to 4 96-well plates into a single 384-well reading plate. 
