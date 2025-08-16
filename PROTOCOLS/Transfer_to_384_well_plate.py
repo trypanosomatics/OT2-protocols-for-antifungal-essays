@@ -6,6 +6,26 @@ metadata = {
     "author": "Salas Sarduy Emir, Didier Garnham Mercedes, Aguero Franco Agustin"
     }
 
+#EXPLANATION
+#This protocol transfers solutions from a 96-well plate to a 384-well plate, mixing 5 times at each step. 
+#The robot first transfers 90 µL from B2 of the 96-well plate to A1 of the 384-well plate, then 90 µL from 
+#C2 to B1, and from D2 to C1, continuing this pattern until the entire 96-well plate is processed, 
+#excluding rows A and H, and column 1 of the 96-well plate.
+#The protocol also includes substrate distribution in the 384-well plate. It begins by adding 10 µL to the 
+#control wells, then continues filling the remaining wells in sequence (A1, B1, C1, etc.). Substrate is 
+#always drawn from an Eppendorf located in position A1 of the tuberack. At least 600 µL of substrate is 
+#required (10 µL per 60 wells).
+#REQUIRES
+#- - For liquid transfer from 96-well plates to a 384-well plate:
+#384-well plate: corning_384_wellplate_112ul_flat
+#96-well plate: nest_96_wellplate_200ul_flat
+#Tipracks: opentrons_96_tiprack_300ul (one per 96-well plate)
+#Pipette: p300_single_gen2 on left
+#- - For substrate transfer to the 384-well plate:
+#Reservoir: opentrons_24_tuberack_eppendorf_1.5ml_safelock_snapcap
+#Tipracks: opentrons_96_tiprack_20ul
+#Pipette: p20_single_gen2 on right
+
 def run(ctx: protocol_api.ProtocolContext):
     ctx.home()
     plates=2                     #Write the amount of plates you want to transfer

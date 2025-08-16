@@ -6,6 +6,25 @@ metadata = {
     "author": "Salas Sarduy Emir, Didier Garnham Mercedes, Aguero Franco Agustin"
 }
 
+#EXPLANATION
+#This protocol involves transferring 100 µL of solution from the first column of the reservoir into well 
+#A2 of the first 96-well plate, followed by transferring another 100 µL from the first column of the 
+#reservoir into well A3, continuing this process until well A11 is reached. Afterward, each well from A2 
+#to A11 is mixed twice, and the pipette tip is washed in well A12 of the reservoir between each transfer, 
+#to be discarded. If the protocol is performed for multiple plates, the robot first follows the procedure 
+#outlined above for the first plate, then applies the same steps to the second plate, using 100 µL from 
+#column A2 of the reservoir.
+#Therefore, a washing solution for the tips (e.g., bleach) should be manually prepared in column A12 of 
+#the reservoir. Additionally, if more than one plate is being processed, 10 mL of lysis solution should 
+#be placed in the respective column of the reservoir (one column per plate, starting from A1 for the 
+#first plate).
+
+#REQUIRES
+#Reservoir: nest_12_reservoir_15ml
+#96-well plates: nest_96_wellplate_200ul_flat
+#Tipracks: opentrons_96_tiprack_300ul (one tiprack per plate)
+#Pipette: p300 single on left
+
 def run(ctx: protocol_api.ProtocolContext):
     # LABWARE INPUTS
     reservoir_position = 1
